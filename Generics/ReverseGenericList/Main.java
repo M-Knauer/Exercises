@@ -9,5 +9,8 @@ public class Main {
     public static void main(String[] args) {
         List<Integer> lst = new ArrayList<Integer>(List.of(1,2,3,4,5,6));
         System.out.println("Reverse list: "+reverseList(lst));
+        reverseInPlace(lst);
+        System.out.println("Reverse in place: "+lst);
+
     }
 }
