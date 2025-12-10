@@ -30,7 +30,20 @@ public class ReverseList {
         if (start > end) {
             return lst;
         }
+
         Collections.swap(lst, start, end);
         return reverseListByRecursion(lst, start + 1, end - 1);
+    }
+
+    public static <T> List<T> reverseAndRotateByOffset(List<T> lst, int offset) {
+        List<T> reversedLst = new ArrayList<>();
+
+        for (int i = lst.size() - 1; i >= 0; i--) {
+            reversedLst.add(lst.get(i));
+        }
+
+        List<T> rotatedLst = new ArrayList<T>(List.copyOf(reversedLst));
+        rotatedLst.addAll(List.copyOf(reversedLst));
+        return rotatedLst.subList(offset, reversedLst.size() + offset);
     }
 }
