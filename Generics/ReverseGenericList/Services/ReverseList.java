@@ -25,4 +25,12 @@ public class ReverseList {
             end--;
         }
     }
+
+    public static <T> List<T> reverseListByRecursion(List<T> lst, int start, int end) {
+        if (start > end) {
+            return lst;
+        }
+        Collections.swap(lst, start, end);
+        return reverseListByRecursion(lst, start + 1, end - 1);
+    }
 }
