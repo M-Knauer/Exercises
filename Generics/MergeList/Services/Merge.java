@@ -1,28 +1,33 @@
 package Desafios.Generics.MergeList.Services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Merge {
 
     public static <T> List<T> mergeAlternately(List<T> lst1, List<T> lst2) {
-        int index1 = 0;
-        int index2 = 0;
-        int size1 = lst1.size() - 1;
-        int size2 = lst2.size() - 1;
+        int size1 = lst1.size();
+        int size2 = lst2.size();
+        int maxLen = Math.max(size1, size2);
         List<T> mergedLst = new ArrayList<>();
 
-        while (index1 <= size1 || index2 <= size2) {
-            if (index1 <= size1) {
-                mergedLst.add(lst1.get(index1));
+        for (int i = 0; i < maxLen; i++) {
+            if (i < size1) {
+                mergedLst.add(lst1.get(i));
             }
-            if (index2 <= size2) {
-                mergedLst.add(lst2.get(index2));
+
+            if (i < size2) {
+                mergedLst.add(lst2.get(i));
             }
-            index1++;
-            index2++;
         }
 
         return mergedLst;
+    }
+
+    public static <T> List<T> mergeAndSort(List<T> l1, List<T> l2, Comparator<T> comp) {
+        List<T> mergedL = new ArrayList<>(mergeAlternately(l1, l2));
+        mergedL.sort(comp);
+        return mergedL;
     }
 }
