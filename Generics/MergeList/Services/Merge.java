@@ -2,6 +2,7 @@ package Desafios.Generics.MergeList.Services;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 
 public class Merge {
@@ -23,7 +24,7 @@ public class Merge {
             if (i < size2) {
                 T element2 = lst2.get(i);
                 if (element2 != null) {
-                    mergedLst.add(lst2.get(i));
+                    mergedLst.add(element2);
                 }
             }
         }
@@ -35,6 +36,17 @@ public class Merge {
         List<T> mergedL = new ArrayList<>(mergeAlternately(l1, l2));
         mergedL.sort(comp);
         return mergedL;
+    }
+
+    public static <T> List<T> mergeUniques(List<T> l1, List<T> l2) {
+        List<T> merged = new ArrayList<>(mergeAlternately(l1, l2));
+        List<T> mergedUniques = new ArrayList<>();
+        for (T e : merged) {
+            if (!mergedUniques.contains(e)) {
+                mergedUniques.add(e);
+            }
+        }
+        return mergedUniques;
     }
 
 }
