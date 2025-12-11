@@ -14,11 +14,17 @@ public class Merge {
 
         for (int i = 0; i < maxLen; i++) {
             if (i < size1) {
-                mergedLst.add(lst1.get(i));
+                T element1 = lst1.get(i);
+                if (element1 != null) {
+                    mergedLst.add(element1);
+                }
             }
 
             if (i < size2) {
-                mergedLst.add(lst2.get(i));
+                T element2 = lst2.get(i);
+                if (element2 != null) {
+                    mergedLst.add(lst2.get(i));
+                }
             }
         }
 
@@ -30,4 +36,5 @@ public class Merge {
         mergedL.sort(comp);
         return mergedL;
     }
+
 }
