@@ -15,6 +15,7 @@ public class Main {
         System.out.println("Filter greater than 9: "+filter(numbers, greaterThan));
         Predicate<String> chooseColor = c -> c.equals("Green");
         System.out.println("Choose color green: "+filter(colors, chooseColor));
+        System.out.println("Filter and reverse sort: "+filterAndReverseSort(numbers, greaterThan));
 
     }
 }

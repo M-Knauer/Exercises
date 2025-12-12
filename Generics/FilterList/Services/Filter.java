@@ -1,6 +1,7 @@
 package Desafios.Generics.FilterList.Services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,6 +14,12 @@ public class Filter {
                 newLst.add(e);
             }
         }
+        return newLst;
+    }
+
+    public static <T extends Comparable<T>> List<T> filterAndReverseSort(List<T> lst, Predicate<T> predicate) {
+        List<T> newLst = new ArrayList<>(filter(lst, predicate));
+        newLst.sort(Comparator.reverseOrder());
         return newLst;
     }
 }
