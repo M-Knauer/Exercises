@@ -22,4 +22,15 @@ public class Filter {
         newLst.sort(Comparator.reverseOrder());
         return newLst;
     }
+
+    public static <T> List<String> filterToString(List<T> lst, Predicate<T> predicate) {
+        List<String> newLst = new ArrayList<>();
+
+        for (T e : lst) {
+            if (predicate.test(e)) {
+                newLst.add(e.toString());
+            }
+        }
+        return newLst;
+    }
 }
