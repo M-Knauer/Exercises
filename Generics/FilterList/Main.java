@@ -26,7 +26,8 @@ public class Main {
         System.out.println("Filter and convert to string: "+filterToString(colors, startsWith));
         System.out.println("Composite filter: "+compositeFilter(numbers, greaterThan, even));
         System.out.println("Composite filter: "+compositeFilter(colors, startsWith, anotherStarts));
-
+        System.out.println("Average filtered numbers: "
+                +String.format("%.1f", filterAndGetAverage(numbers, greaterThan)));
 
     }
 }

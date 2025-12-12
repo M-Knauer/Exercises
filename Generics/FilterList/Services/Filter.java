@@ -44,4 +44,9 @@ public class Filter {
         }
         return newLst;
     }
+
+    public static <T extends Number> double filterAndGetAverage(List<T> lst, Predicate<T> p) {
+        List<T> newLst = new ArrayList<>(filter(lst, p));
+        return newLst.stream().mapToDouble(Number::doubleValue).average().orElse(0);
+    }
 }
