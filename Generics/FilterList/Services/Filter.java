@@ -33,4 +33,15 @@ public class Filter {
         }
         return newLst;
     }
+
+    public static <T> List<T> compositeFilter(List<T> lst, Predicate<T> p1, Predicate<T> p2) {
+        List<T> newLst = new ArrayList<>();
+
+        for (T e : lst) {
+            if (p1.or(p2).test(e)) {
+                newLst.add(e);
+            }
+        }
+        return newLst;
+    }
 }
