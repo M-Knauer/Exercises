@@ -12,5 +12,6 @@ public class Main {
         infos.put("João", 29);
 
         printMap(infos);
+        sortedByKey(infos);
     }
 }
