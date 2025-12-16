@@ -1,5 +1,5 @@
 package Desafios.LambdaExpression.SumTwoNumbers.Models;
 
 public interface CalculateNumbers <T> {
-    T sum(T x, T y);
+    T operate(T x, T y);
 }
