@@ -31,4 +31,9 @@ public class PrintMap {
             }
         });
     }
+
+    public static <K extends Comparable<K>, V> void printReverseOrder(HashMap<K, V> map) {
+        TreeMap<K, V> treeMap = new TreeMap<>(map);
+        treeMap.descendingMap().forEach((k, v) -> System.out.println(k + ", " + v));
+    }
 }

@@ -12,8 +12,13 @@ public class Main {
         infos.put("João", 29);
 
         printMap(infos);
+        System.out.println();
         sortedByKey(infos);
+        System.out.println();
         printFormatted(infos);
+        System.out.println();
         printHighlights(infos);
+        System.out.println();
+        printReverseOrder(infos);
     }
 }
