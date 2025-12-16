@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import static Desafios.LambdaExpression.SumTwoNumbers.Services.OperateFile.*;
 
@@ -29,6 +31,12 @@ public class Main {
         calculate = (x, y) -> x + y;
         res = calculate.operate(numbers.get(0), numbers.get(1));
         System.out.println("From file: X + Y = "+res);
+
+        System.out.println();
+
+        BiFunction<Integer, Integer, Integer> calculateFunc = (x, y) -> x + y;
+        Function<Integer, String> format = result -> "Lambda concat: x + y = "+result;
+        System.out.println(format.apply(calculateFunc.apply(10, 5)));
 
     }
 }
