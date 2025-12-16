@@ -17,4 +17,18 @@ public class PrintMap {
             System.out.println(entry.getKey()+", "+entry.getValue());
         }
     }
+
+    public static <K, V> void printFormatted(HashMap<K, V> map) {
+        map.forEach((k, v) -> System.out.println(k + " -> " + v));
+    }
+
+    public static <K, V extends Number> void printHighlights(HashMap<K, V> map) {
+        map.forEach((k, v) -> {
+            if (v.intValue() >= 30) {
+                System.out.println("*" + k + " -> " + v + "*");
+            } else {
+                System.out.println(k + " -> " + v);
+            }
+        });
+    }
 }

@@ -13,5 +13,7 @@ public class Main {
 
         printMap(infos);
         sortedByKey(infos);
+        printFormatted(infos);
+        printHighlights(infos);
     }
 }
