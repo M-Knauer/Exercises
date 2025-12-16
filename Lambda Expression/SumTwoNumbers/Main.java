@@ -38,5 +38,11 @@ public class Main {
         Function<Integer, String> format = result -> "Lambda concat: x + y = "+result;
         System.out.println(format.apply(calculateFunc.apply(10, 5)));
 
+        System.out.println();
+
+        Function<Integer, Integer> result =  element -> element - 3;
+
+        System.out.println("Composition: x + y - 3 = "+calculateFunc.andThen(result).apply(10,5));
+
     }
 }
