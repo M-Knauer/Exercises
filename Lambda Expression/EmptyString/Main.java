@@ -4,11 +4,12 @@ import Desafios.LambdaExpression.EmptyString.Models.IsEmptyString;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        Predicate<String> isEmpty = s -> s.trim().isEmpty();
+        Predicate<String> isEmpty = s -> s == null || s.trim().isEmpty();
 
         String msg = "  ";
 
@@ -30,5 +31,15 @@ public class Main {
         IsEmptyString isEmptyString = s -> s.trim().isEmpty() ? "Message is empty." : s;
         msg = "Hello, world!";
         System.out.println(isEmptyString.isEmptyDefaultMsg(msg));
+
+        Consumer<String> errorLogger = e -> System.err.println("Error: empty string");
+
+        Consumer<String> validateAndLog = s -> {
+            if (isEmpty.test(s)) {
+                errorLogger.accept(s);
+            }
+        };
+
+        validateAndLog.accept("");
     }
 }
