@@ -1,5 +1,8 @@
 package Desafios.LambdaExpression.UpperAndLowercase;
 
+import Desafios.LambdaExpression.UpperAndLowercase.Models.InUpperAndLowercase;
+import Desafios.LambdaExpression.UpperAndLowercase.Models.UpperAndLowercase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,5 +25,18 @@ public class Main {
         });
         System.out.println("Title case: "+str);
 
+        InUpperAndLowercase upperLower = strings -> {
+            List<String> upper = new ArrayList<>();
+            List<String> lower = new ArrayList<>();
+            for (String s : strings) {
+                upper.add(s.toUpperCase());
+                lower.add(s.toLowerCase());
+            }
+            return new UpperAndLowercase(upper, lower);
+        };
+
+        UpperAndLowercase ul = upperLower.getUpperLower(str);
+        System.out.println("Uppercase: "+ul.getUppercases());
+        System.out.println("Lowercase: "+ul.getLowercases());
     }
 }
