@@ -1,6 +1,7 @@
 package Desafios.LambdaExpression.UpperAndLowercase;
 
 import Desafios.LambdaExpression.UpperAndLowercase.Models.InUpperAndLowercase;
+import Desafios.LambdaExpression.UpperAndLowercase.Models.MixUpperAndLowercase;
 import Desafios.LambdaExpression.UpperAndLowercase.Models.UpperAndLowercase;
 
 import java.util.ArrayList;
@@ -38,5 +39,26 @@ public class Main {
         UpperAndLowercase ul = upperLower.getUpperLower(str);
         System.out.println("Uppercase: "+ul.getUppercases());
         System.out.println("Lowercase: "+ul.getLowercases());
+
+        MixUpperAndLowercase mix = strings -> {
+            List<String> mixedLst = new ArrayList<>();
+            for (String string : strings) {
+                if (string != null) {
+                    StringBuilder mixedWord = new StringBuilder();
+                    for (int i = 0; i < string.length(); i++) {
+                        char chr = string.charAt(i);
+                        if (i % 2 == 0) {
+                            mixedWord.append(Character.toUpperCase(chr));
+                        } else {
+                            mixedWord.append(Character.toLowerCase(chr));
+                        }
+                    }
+                    mixedLst.add(mixedWord.toString());
+                }
+            }
+            return mixedLst;
+        };
+
+        System.out.println("Mixed upper and lowercase: "+mix.mixUpperAndLower(str));
     }
 }
