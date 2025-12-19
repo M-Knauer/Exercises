@@ -6,6 +6,7 @@ import Desafios.LambdaExpression.UpperAndLowercase.Models.UpperAndLowercase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class Main {
     public static void main(String[] args) {
@@ -60,5 +61,23 @@ public class Main {
         };
 
         System.out.println("Mixed upper and lowercase: "+mix.mixUpperAndLower(str));
+
+        Function<List<String>, List<String>> uppercase = strings -> {
+            List<String> uppercaseLst = new ArrayList<>();
+            for (String s : strings) {
+                if (s != null) {
+                    uppercaseLst.add(s.toUpperCase());
+                }
+            }
+            return uppercaseLst;
+        };
+
+        Function<List<String>, List<String>> sort = strings -> {
+            List<String> sorted = new ArrayList<>(List.copyOf(strings));
+            sorted.sort((s1, s2) -> s1.compareTo(s2));
+            return sorted;
+        };
+
+        System.out.println("Uppercase and sort: "+uppercase.andThen(sort).apply(str));
     }
 }
