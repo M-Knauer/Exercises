@@ -70,5 +70,16 @@ public class Main {
         };
 
         evenAndOdd.accept(numbers);
+
+        Function<List<Integer>, Integer> sum = integers -> {
+            int total = 0;
+            for (int n : integers) {
+                total += n;
+            }
+            return total;
+        };
+
+        int total = even.andThen(sum).apply(numbers);
+        System.out.println("Total evens: "+total);
     }
 }
