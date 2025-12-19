@@ -15,29 +15,41 @@ public class Main {
         Predicate<Integer> isOdd = n -> n % 2 == 1;
 
         Function<List<Integer>, List<Integer>> even = integers -> {
-            List<Integer> evens = new ArrayList<>();
+            List<Integer> evenLst = new ArrayList<>();
             for (int num : integers) {
                 if (isEven.test(num)) {
-                    evens.add(num);
+                    evenLst.add(num);
                 }
             }
-            return evens;
+            return evenLst;
         };
 
         Function<List<Integer>, List<Integer>> odd = integers -> {
-            List<Integer> odds = new ArrayList<>();
+            List<Integer> oddLst = new ArrayList<>();
             for (int num : integers) {
                 if (isOdd.test(num)) {
-                    odds.add(num);
+                    oddLst.add(num);
                 }
             }
-            return odds;
+            return oddLst;
         };
 
-        List<Integer> evens = even.apply(numbers);
-        List<Integer> odds = odd.apply(numbers);
+        List<Integer> evenLst = even.apply(numbers);
+        List<Integer> oddLst = odd.apply(numbers);
 
-        System.out.println("Evens: "+evens);
-        System.out.println("Odds: "+odds);
+        System.out.println("List of even: "+evenLst);
+        System.out.println("List of odd: "+oddLst);
+
+        Function<List<Integer>, List<Integer>> squares = integers -> {
+            List<Integer> squareList = new ArrayList<>();
+            for (int num : integers) {
+                squareList.add(num * num);
+            }
+            return squareList;
+        };
+
+        evenLst = even.andThen(squares).apply(numbers);
+
+        System.out.println("Squares even: "+evenLst);
     }
 }
