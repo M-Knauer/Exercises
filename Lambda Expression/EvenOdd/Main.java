@@ -2,6 +2,7 @@ package Desafios.LambdaExpression.EvenOdd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -51,5 +52,23 @@ public class Main {
         evenLst = even.andThen(squares).apply(numbers);
 
         System.out.println("Squares even: "+evenLst);
+
+        Consumer<List<Integer>> evenAndOdd = integers -> {
+            List<Integer> oddL = new ArrayList<>();
+            List<Integer> evenL = new ArrayList<>();
+
+            for (int num : integers) {
+                if (isEven.test(num)) {
+                    evenL.add(num);
+                } else {
+                    oddL.add(num);
+                }
+            }
+
+            System.out.println("Consumer even: "+evenL);
+            System.out.println("Consumer odd: "+oddL);
+        };
+
+        evenAndOdd.accept(numbers);
     }
 }
