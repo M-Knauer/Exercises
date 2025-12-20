@@ -3,6 +3,7 @@ package Desafios.LambdaExpression.AlphabeticalOrder;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,5 +25,22 @@ public class Main {
         colors.sort(lengthOrder.thenComparing(ifEqualsLenAlpha));
         System.out.println("Sort by length: "+colors);
 
+        Function<List<String>, List<String>> startsWithFilter = strings -> {
+            List<String> filtered = new ArrayList<>();
+            for (String s : strings) {
+                if (!s.toLowerCase().startsWith("b")) {
+                    filtered.add(s);
+                }
+            }
+            return filtered;
+        };
+
+        Function<List<String>, List<String>> sortByLenThenAlpha = strings -> {
+            List<String> sorted = new ArrayList<>(List.copyOf(strings));
+            sorted.sort(lengthOrder.thenComparing(ifEqualsLenAlpha));
+            return sorted;
+        };
+
+        System.out.println("Filtered: "+sortByLenThenAlpha.andThen(startsWithFilter).apply(colors));
     }
 }
