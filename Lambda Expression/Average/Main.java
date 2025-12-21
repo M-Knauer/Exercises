@@ -47,5 +47,12 @@ public class Main {
         System.out.println("Normal average: "+normalAverage);
         end = System.nanoTime();
         System.out.println("Normal stream time: "+(end - start));
+
+        double filterAndTransform = numbers.stream()
+                .filter(d -> d > 0)
+                .mapToDouble(d -> d / 2)
+                .average().orElse(0.);
+
+        System.out.println("Filter and transform avg: "+filterAndTransform);
     }
 }
