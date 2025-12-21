@@ -16,5 +16,11 @@ public class Main {
                 .average().orElse(0.);
 
         System.out.println("Average Ignoring negative values: "+String.format("%.2f", ignoreNegativesAvr));
+
+        double averageSquare = numbers.stream()
+                .mapToDouble(d -> d * d)
+                .average().orElse(0.0);
+
+        System.out.println("Average square: "+averageSquare);
     }
 }
