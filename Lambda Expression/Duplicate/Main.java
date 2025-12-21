@@ -12,5 +12,13 @@ public class Main {
                 .distinct().toList());
 
         System.out.println("Unique numbers: "+uniques);
+
+        List<Integer> uniquesSorted = new ArrayList<>();
+
+        uniquesSorted.addAll(numbers.stream()
+                .distinct()
+                .sorted((n1, n2) -> n1.compareTo(n2)).toList());
+
+        System.out.println("Unique sorted numbers: "+uniquesSorted);
     }
 }
