@@ -20,5 +20,14 @@ public class Main {
                 .sorted((n1, n2) -> n1.compareTo(n2)).toList());
 
         System.out.println("Unique sorted numbers: "+uniquesSorted);
+
+        int total = numbers.stream()
+                .distinct()
+                .mapToInt(n -> n)
+                .sum();
+
+        System.out.println("Total of unique values: "+total);
+
+        
     }
 }
