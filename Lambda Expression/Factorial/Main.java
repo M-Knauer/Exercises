@@ -1,6 +1,7 @@
 package Desafios.LambdaExpression.Factorial;
 
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,5 +15,9 @@ public class Main {
         };
 
         System.out.println(num+"! = "+factorial.apply(num));
+
+        int result = IntStream.rangeClosed(1, num).reduce(1, (x,y) -> x*y);
+        System.out.println("\nReduce");
+        System.out.println(num+"! = "+result);
     }
 }
