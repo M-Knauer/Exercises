@@ -1,9 +1,11 @@
 package Desafios.LambdaExpression.Factorial;
 
-import java.util.ArrayList;
+import Desafios.LambdaExpression.Factorial.Models.Factorial;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
@@ -41,5 +43,24 @@ public class Main {
         factorialMap.forEach((k,v) -> {
             System.out.println(k+"! = "+v);
         });
+
+        num = 8;
+        Factorial<Integer>[] fac = new Factorial[1];
+        fac[0] = (n, map) -> {
+            if (map.containsKey(n)) {
+                return map.get(n);
+            }
+            if (n <= 1) {
+                return 1;
+            }
+            int res = n * fac[0].calculateFactorial(n - 1, map);
+            map.put(n, res);
+            return res;
+        };
+
+        result = fac[0].calculateFactorial(num, new HashMap<>());
+
+        System.out.println("\nRecursive lambda");
+        System.out.println(num+"! = "+result);
     }
 }
