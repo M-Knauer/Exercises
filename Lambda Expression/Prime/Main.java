@@ -1,6 +1,9 @@
 package Desafios.LambdaExpression.Prime;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,5 +21,9 @@ public class Main {
 
         int num = 79;
         System.out.println(isPrime.test(num) ? num+" is prime." : num+" not is prime.");
+
+        List<Integer> numbers = new ArrayList<>(List.of(1,2,3,4,5,6,7,8,9,10));
+        List<Integer> primes = numbers.stream().filter(isPrime).toList();
+        System.out.println(primes);
     }
 }
