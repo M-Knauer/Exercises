@@ -5,7 +5,6 @@ import Desafios.LambdaExpression.Factorial.Models.Factorial;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
@@ -62,5 +61,19 @@ public class Main {
 
         System.out.println("\nRecursive lambda");
         System.out.println(num+"! = "+result);
+        System.out.println();
+
+        int finalNum = num;
+        Function<Integer, String> format = f -> String.format("%d! = %d", finalNum, f);
+        Function<Integer, Integer> calc = n -> {
+            int res = 1;
+            for (int i = n; i > 1 ; i--) {
+                res *= i;
+            }
+            return res;
+        };
+
+        System.out.println();
+        System.out.println(calc.andThen(format).apply(num));
     }
 }
