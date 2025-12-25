@@ -14,6 +14,11 @@ public class Main {
         System.out.println("Max: "+max.orElse(null));
         System.out.println("Min: "+min.orElse(null));
 
+        System.out.println("\nMax and min numbers using reduce");
+        int maxInt = numbers.stream().reduce(0, Integer::max);
+        int minInt = numbers.stream().reduce(0, Integer::min);
+        System.out.println("Max: "+maxInt);
+        System.out.println("Min: "+minInt);
 
 
     }
