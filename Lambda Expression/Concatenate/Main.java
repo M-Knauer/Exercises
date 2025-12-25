@@ -6,6 +6,7 @@ import Desafios.LambdaExpression.Concatenate.Models.Sentence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class Main {
     public static void main(String[] args) {
@@ -46,5 +47,9 @@ public class Main {
         first = "Eu sou menor";
         second = "Eu sou o maior";
         System.out.println(greaterFirst.apply(first, second));
+
+        Function<String, String> format = String::toUpperCase;
+        System.out.println("Concatenate and format to uppercase");
+        System.out.println(concat.andThen(format).apply(first, second));
     }
 }
