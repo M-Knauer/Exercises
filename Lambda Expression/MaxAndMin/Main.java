@@ -1,13 +1,15 @@
 package Desafios.LambdaExpression.MaxAndMin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collector;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer> numbers = new ArrayList<>(List.of());
+        List<Integer> numbers = new ArrayList<>(List.of(3, 7, 2, 9, 4));
 
         System.out.println("Max and min numbers");
         Optional<Integer> max = numbers.stream().max(Integer::compareTo);
@@ -29,5 +31,22 @@ public class Main {
             return maxTmp.orElse(0) - minTmp.orElse(0);
         };
         System.out.println("Max and min difference: "+calculateDifference.apply(numbers));
+
+        Collector<Integer, int[], List<Integer>> maxMinCollector = Collector.of(
+                () -> new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE},
+                (acc, num) -> {
+                    acc[0] = Math.max(acc[0], num);
+                    acc[1] = Math.min(acc[1], num);
+                },
+                (lst1, lst2) -> new int[] {
+                    Math.max(lst1[0], lst2[0]),
+                    Math.min(lst1[1], lst2[1])
+                },
+                acc -> List.of(acc[0], acc[1])
+        );
+
+        System.out.println("\nMax and min custom collector");
+        List<Integer> maxMinPair = numbers.stream().collect(maxMinCollector);
+        System.out.println(maxMinPair);
     }
 }
