@@ -1,5 +1,8 @@
 package Desafios.LambdaExpression.MultiplyAndSum;
 
+import Desafios.LambdaExpression.MultiplyAndSum.Models.Result;
+import Desafios.POO.MusicLibraries.Song;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -23,5 +26,17 @@ public class Main {
         System.out.println("\nMultiply and sum all numbers with reduce");
         Function<Integer, Integer> sumNumbers = n -> numbers.stream().reduce(0, Integer::sum);
         System.out.println(multiply.andThen(sumNumbers).apply(numbers));
+
+        System.out.println("\nReturns both the product and the sum");
+        Function<List<Integer>, Result> multipliesSum = integers -> {
+            Result res = new Result();
+            res.multiply = integers.stream().reduce(1, (a, b) -> a*b);
+            res.sum = integers.stream().mapToInt(Integer::intValue).sum();
+
+            return res;
+        };
+        Result resObj = multipliesSum.apply(numbers);
+        System.out.println(resObj.multiply);
+        System.out.println(resObj.sum);
     }
 }
