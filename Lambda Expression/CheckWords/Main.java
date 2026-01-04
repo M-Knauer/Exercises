@@ -16,5 +16,11 @@ public class Main {
 
         boolean checkString = words.stream().anyMatch(w -> w.contains(searchString));
         System.out.println(checkString ? searchString+" is in the list" : searchString+" is not in the list");
+
+        String keyword = "a";
+
+        long filteredWordsCount = words.stream().filter(w -> w.contains(keyword)).count();
+        System.out.println("Number of strings containing '"+keyword+"': "+filteredWordsCount);
+
     }
 }
