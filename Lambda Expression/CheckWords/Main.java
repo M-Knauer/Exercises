@@ -2,7 +2,6 @@ package Desafios.LambdaExpression.CheckWords;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,5 +30,12 @@ public class Main {
                 .orElse("");
 
         System.out.println(firstOccurrence.isBlank() ? "No match found for '"+searchWord+"'" : firstOccurrence);
+
+        List<String> uppercaseWords = words
+                .stream()
+                .filter(w -> w.equalsIgnoreCase(searchWord))
+                .map(String::toUpperCase).toList();
+
+        System.out.println("Uppercase results for search '"+searchWord+"': "+uppercaseWords);
     }
 }
