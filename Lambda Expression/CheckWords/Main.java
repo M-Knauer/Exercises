@@ -2,10 +2,11 @@ package Desafios.LambdaExpression.CheckWords;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        List<String> words = new ArrayList<>(List.of("Red", "Green", "Blue", "Orange", "Black"));
+        List<String> words = new ArrayList<>(List.of("Red", "Green", "Blue", "Orange", "Black", "Blue"));
 
         String searchColor = "Orange";
 
@@ -22,5 +23,13 @@ public class Main {
         long filteredWordsCount = words.stream().filter(w -> w.contains(keyword)).count();
         System.out.println("Number of strings containing '"+keyword+"': "+filteredWordsCount);
 
+        String searchWord = "Blue";
+        String firstOccurrence = words
+                .stream()
+                .filter(w -> w.equalsIgnoreCase(searchWord))
+                .findFirst()
+                .orElse("");
+
+        System.out.println(firstOccurrence.isBlank() ? "No match found for '"+searchWord+"'" : firstOccurrence);
     }
 }
