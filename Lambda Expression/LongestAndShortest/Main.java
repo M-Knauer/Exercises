@@ -42,5 +42,18 @@ public class Main {
         System.out.println("Longest: " + longestAndShortest.longest);
         System.out.println("Shortest: " + longestAndShortest.shortest);
 
+        int[] res = words.stream().collect(
+                () -> new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE},
+                (acc, word) -> {
+                    acc[0] = Math.min(acc[0], word.length());
+                    acc[1] = Math.max(acc[1], word.length());
+                },
+                (acc1, acc2) -> {
+                    acc1[0] = Math.min(acc1[0], acc2[0]);
+                    acc1[1] = Math.max(acc1[1], acc2[1]);
+                }
+        );
+        System.out.println("\nDifference between the longest and shortest string lengths: "+(res[1] - res[0]));
+
     }
 }
