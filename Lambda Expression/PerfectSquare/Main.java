@@ -27,5 +27,9 @@ public class Main {
         List<Integer> perfectSquareNumbers = numbers.stream().filter(isPerfectSquare).toList();
         System.out.println("\nOriginal list: "+numbers);
         System.out.println("Only perfect squares: "+perfectSquareNumbers);
+
+        System.out.println("\nPerfect squares: "+perfectSquareNumbers);
+        int sum = numbers.stream().filter(isPerfectSquare).mapToInt(Integer::intValue).sum();
+        System.out.println("Sum of perfect squares: "+sum);
     }
 }
