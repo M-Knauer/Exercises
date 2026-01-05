@@ -1,7 +1,11 @@
 package Desafios.LambdaExpression.SecondLargAndSmall;
 
+import Desafios.LambdaExpression.SecondLargAndSmall.Models.Pairs;
+
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,17 +22,28 @@ public class Main {
         System.out.println("\n" +
                 "Getting the second number in the list by filtering out the maximum value: "+numbers);
 
+        Predicate<Integer> filterOutMax = n -> n < numbers
+                        .stream()
+                        .mapToInt(Integer::intValue)
+                        .max().orElse(0);
+
         secondLargest = numbers
                 .stream()
-                .filter(n ->
-                        n < numbers
-                                .stream()
-                                .mapToInt(Integer::intValue)
-                                .max().orElse(0))
+                .filter(filterOutMax)
                 .max(Integer::compareTo).orElse(0);
 
         System.out.println("Second largest: "+secondLargest);
 
-
+        System.out.println("\nGetting the second largest and smallest pairs in the list: "+numbers);
+        Pairs pairs = numbers.stream().distinct().sorted().collect(Collectors.collectingAndThen(
+                Collectors.toList(),
+                lst -> {
+                    if (lst.size() < 2) {
+                        throw new IllegalArgumentException("Not enough distinct elements");
+                    }
+                    return new Pairs(lst.get(lst.size() - 2), lst.get(1));
+                }
+        ));
+        System.out.println("Pairs: "+pairs);
     }
 }
