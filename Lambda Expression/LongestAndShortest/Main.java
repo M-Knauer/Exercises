@@ -3,7 +3,9 @@ package Desafios.LambdaExpression.LongestAndShortest;
 import Desafios.LambdaExpression.LongestAndShortest.Models.Pairs;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
 public class Main {
     public static void main(String[] args) {
@@ -55,5 +57,15 @@ public class Main {
         );
         System.out.println("\nDifference between the longest and shortest string lengths: "+(res[1] - res[0]));
 
+        Function<List<String>, List<String>> sortByLen = strings -> {
+            List<String> sorted = new ArrayList<>(List.copyOf(strings));
+            sorted.sort(Comparator.comparing(String::length));
+            return sorted;
+        };
+        Function<List<String>, List<String>> extractElements = strings ->
+                new ArrayList<>(List.of(strings.get(0), strings.get(strings.size() - 1)));
+
+        System.out.println("\nSorting by length and extracting the first and last elements");
+        System.out.println(sortByLen.andThen(extractElements).apply(words));
     }
 }
