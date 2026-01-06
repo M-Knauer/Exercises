@@ -22,6 +22,7 @@ public class Main {
                 1 - Name
                 2 - Age
                 3 - Gender
+                4 - Age in descending order
                 """);
         Scanner sc = new Scanner(System.in);
 
@@ -44,6 +45,10 @@ public class Main {
             case 3:
                 personsCopy.sort(Comparator.comparing(Person::getGender));
                 System.out.println("\n- Sorted by gender -");
+                break;
+            case 4:
+                personsCopy.sort(Comparator.comparingInt(Person::getAge).reversed());
+                System.out.println("\n- Sorted by age in descending order -");
                 break;
             default:
                 System.out.println("Invalid option.");
