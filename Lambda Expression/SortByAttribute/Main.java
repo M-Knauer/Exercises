@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         List<Person> persons = new ArrayList<>(List.of(
                 new Person("Adriana Jamie", 15, "Female"),
+                new Person("adriana Jamie", 15, "Female"),
                 new Person("Micaela Rosana", 15, "Female"),
                 new Person("Jair Camila", 14, "Male"),
                 new Person("Conceicao Palmira", 14, "Female"),
@@ -35,7 +36,7 @@ public class Main {
 
         switch (opt) {
             case 1:
-                personsCopy.sort(Comparator.comparing(Person::getName));
+                personsCopy.sort(Comparator.comparing(Person::getName, String.CASE_INSENSITIVE_ORDER));
                 System.out.println("\n- Sorted by name -");
                 break;
             case 2:
