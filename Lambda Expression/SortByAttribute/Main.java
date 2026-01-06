@@ -40,7 +40,8 @@ public class Main {
                 System.out.println("\n- Sorted by name -");
                 break;
             case 2:
-                personsCopy.sort(Comparator.comparingInt(Person::getAge));
+                personsCopy.sort(Comparator.comparingInt(Person::getAge)
+                        .thenComparing(Person::getName, String.CASE_INSENSITIVE_ORDER));
                 System.out.println("\n- Sorted by age -");
                 break;
             case 3:
