@@ -24,13 +24,14 @@ public class Main {
                 2 - Age
                 3 - Gender
                 4 - Age in descending order
+                5 - Gender and filter by a string
                 """);
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Option: ");
         int opt = sc.nextInt();
 
-        sc.close();
+
 
         List<Person> personsCopy = new ArrayList<>(List.copyOf(persons));
 
@@ -52,10 +53,17 @@ public class Main {
                 personsCopy.sort(Comparator.comparingInt(Person::getAge).reversed());
                 System.out.println("\n- Sorted by age in descending order -");
                 break;
+            case 5:
+                System.out.print("\nType a string: ");
+                String string = sc.next();
+                personsCopy = List.copyOf(persons.stream().sorted(Comparator.comparing(Person::getGender))
+                        .filter(p -> p.getName().contains(string)).toList());
+                break;
             default:
                 System.out.println("Invalid option.");
                 return;
         }
+        sc.close();
 
         personsCopy.forEach(p ->
                 System.out.printf("%s - %d - %s%n", p.getName(), p.getAge(), p.getGender()));
