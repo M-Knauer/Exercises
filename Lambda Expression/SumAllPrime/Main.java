@@ -21,5 +21,9 @@ public class Main {
         int sum = IntStream.rangeClosed(init, end).filter(isPrime).sum();
 
         System.out.println("Sum of prime numbers between "+init+" and "+end+": "+sum);
+
+        System.out.println("\nUsing reduce");
+        sum = IntStream.rangeClosed(init, end).filter(isPrime).reduce(0, Integer::sum);
+        System.out.println("Sum of prime numbers between "+init+" and "+end+": "+sum);
     }
 }
