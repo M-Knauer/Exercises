@@ -33,5 +33,8 @@ public class Main {
                         acc + entry.getKey() : acc, Integer::sum);
         System.out.println("Sum of prime numbers between "+init+" and "+end+": "+sum);
 
+        System.out.println("\nFilter, map and sum");
+        sum = IntStream.rangeClosed(init, end).filter(isPrime).map(n -> n).sum();
+        System.out.println("Sum of prime numbers between "+init+" and "+end+": "+sum);
     }
 }
