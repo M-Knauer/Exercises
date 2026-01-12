@@ -39,5 +39,9 @@ public class Main {
         words = List.of("java");
         System.out.println(words);
         System.out.println(checkCase.apply(words));
+
+        words = List.of("JAVA", "PYTHON", "ABC");
+        boolean isAllUppercase = words.stream().allMatch(w -> w.equals(w.toUpperCase()));
+        System.out.println("Are all strings uppercase (with allMatch): "+isAllUppercase);
     }
 }
