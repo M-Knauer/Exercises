@@ -2,7 +2,9 @@ package Desafios.LambdaExpression.ChackCase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -54,5 +56,18 @@ public class Main {
         boolean isAllLowercase = words.stream().allMatch(w -> w.equals(w.toLowerCase()));
         System.out.println("Are all strings lowercase: "+isAllLowercase);
         System.out.println();
+
+        Function<String, String> classifier = w -> {
+            if (w.equals(w.toLowerCase())) {
+                return "Lowercase";
+            } else if (w.equals(w.toUpperCase())) {
+                return "Uppercase";
+            }
+            return "Mixedcase";
+        };
+        words = List.of("java", "python", "Cobol", "JAVASCRIPT", "PHP");
+        Map<String, List<String>> wordMap = words.stream().collect(Collectors.groupingBy(classifier));
+        System.out.println(wordMap);
+        System.out.println(wordMap.size() > 1 ? "The strings aren't uniform." : "The strings are uniform.");
     }
 }
