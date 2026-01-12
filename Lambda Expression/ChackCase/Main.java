@@ -31,17 +31,28 @@ public class Main {
         };
         System.out.println(words);
         System.out.println(checkCase.apply(words));
+        System.out.println();
 
         words = List.of("JAVA", "PYTHON", "ABC");
         System.out.println(words);
         System.out.println(checkCase.apply(words));
+        System.out.println();
 
         words = List.of("java");
         System.out.println(words);
         System.out.println(checkCase.apply(words));
+        System.out.println();
 
         words = List.of("JAVA", "PYTHON", "ABC");
+        System.out.println(words);
         boolean isAllUppercase = words.stream().allMatch(w -> w.equals(w.toUpperCase()));
         System.out.println("Are all strings uppercase (with allMatch): "+isAllUppercase);
+        System.out.println();
+
+        words = List.of("java", "python", "cobol");
+        System.out.println(words);
+        boolean isAllLowercase = words.stream().allMatch(w -> w.equals(w.toLowerCase()));
+        System.out.println("Are all strings lowercase: "+isAllLowercase);
+        System.out.println();
     }
 }
