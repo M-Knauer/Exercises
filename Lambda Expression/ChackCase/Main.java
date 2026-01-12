@@ -1,0 +1,43 @@
+package Desafios.LambdaExpression.ChackCase;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> words = new ArrayList<>(List.of("Java", "JAVA", "java"));
+
+        Function<List<String>, String> checkCase = lst -> {
+            int len = lst.size();
+            int upperCount = 0;
+            int lowerCount = 0;
+            for (String word : lst) {
+                String wordAux = word.toUpperCase();
+                if (wordAux.equals(word)) {
+                    upperCount++;
+                }
+                wordAux = word.toLowerCase();
+                if (wordAux.equals(word)) {
+                    lowerCount++;
+                }
+            }
+            if (upperCount == len) {
+                return "Uppercase";
+            } else if (lowerCount == len) {
+                return "Lowercase";
+            }
+            return "Mixedcase";
+        };
+        System.out.println(words);
+        System.out.println(checkCase.apply(words));
+
+        words = List.of("JAVA", "PYTHON", "ABC");
+        System.out.println(words);
+        System.out.println(checkCase.apply(words));
+
+        words = List.of("java");
+        System.out.println(words);
+        System.out.println(checkCase.apply(words));
+    }
+}
