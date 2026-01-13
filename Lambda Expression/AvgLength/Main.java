@@ -16,5 +16,9 @@ public class Main {
         System.out.println(colors);
         avg = colors.stream().filter(c -> !c.isBlank()).mapToInt(String::length).average().orElse(0);
         System.out.println("Average length of strings: "+String.format("%.1f", avg));
+
+        System.out.println("\nReduce");
+        int sum = colors.stream().mapToInt(String::length).reduce(0, Integer::sum);
+        System.out.println(sum / colors.size());
     }
 }
