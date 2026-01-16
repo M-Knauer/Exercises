@@ -29,5 +29,19 @@ public class Main {
 
         double weightedAvg = acc.weightedSum / acc.weightSum;
         System.out.println("\nWeighted average: "+weightedAvg);
+
+        double evenAvg = numbers
+                .stream()
+                .filter(n -> n % 2 == 0)
+                .mapToDouble(Integer::doubleValue)
+                .average().orElse(0);
+
+        double oddAvg = numbers
+                .stream()
+                .filter(n -> n % 2 == 1)
+                .mapToDouble(Integer::doubleValue)
+                .average().orElse(0);
+
+        System.out.println("\nEven average minus odd average: "+(evenAvg - oddAvg));
     }
 }
