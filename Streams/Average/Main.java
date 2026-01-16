@@ -62,5 +62,15 @@ public class Main {
                 .average().orElse(0);
 
         System.out.println("\nPrime average: "+primeAvg);
+
+        int threshold = 10;
+
+        double thresholdAvg = numbers
+                .stream()
+                .filter(n -> n <= 10)
+                .mapToDouble(Integer::doubleValue)
+                .average().orElse(0);
+
+        System.out.println("\nAverage of numbers not exceeding "+threshold+": "+thresholdAvg);
     }
 }
