@@ -4,11 +4,12 @@ import Desafios.Streams.Average.Models.Acc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer> numbers = new ArrayList<>(List.of(1, 3, 6, 8, 10, 18, 36));
+        List<Integer> numbers = new ArrayList<>(List.of(1, 3, 6, 8, 10, 18, 36, 5, 7));
 
         double avg = numbers.stream().mapToDouble(Integer::doubleValue).average().orElse(0);
         System.out.println(numbers);
@@ -43,5 +44,23 @@ public class Main {
                 .average().orElse(0);
 
         System.out.println("\nEven average minus odd average: "+(evenAvg - oddAvg));
+
+        Predicate<Integer> isPrime = n -> {
+            if (n < 2) {
+                return false;
+            }
+            for (int i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i == 0) return false;
+            }
+            return true;
+        };
+
+        double primeAvg = numbers
+                .stream()
+                .filter(isPrime)
+                .mapToDouble(Integer::doubleValue)
+                .average().orElse(0);
+
+        System.out.println("\nPrime average: "+primeAvg);
     }
 }
