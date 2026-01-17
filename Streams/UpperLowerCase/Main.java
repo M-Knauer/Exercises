@@ -3,6 +3,7 @@ package Desafios.Streams.UpperLowerCase;
 import Desafios.LambdaExpression.UpperAndLowercase.Models.UpperAndLowercase;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,5 +53,12 @@ public class Main {
         System.out.println("\nConverting strings that start with a vowel to uppercase, otherwise to lowercase");
         System.out.println("Uppercase: "+upLow.getUppercases());
         System.out.println("Lowercase: "+upLow.getLowercases());
+
+        lowercase = colors
+                .stream()
+                .map(String::toLowerCase)
+                .sorted(Comparator.comparingInt(String::length)).toList();
+        System.out.println("\nConverting strings to lowercase and sorting by length");
+        System.out.println(lowercase);
     }
 }
