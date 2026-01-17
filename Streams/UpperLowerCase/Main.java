@@ -27,12 +27,30 @@ public class Main {
                     acc1.getLowercases().addAll(acc2.getLowercases());
                 }
         );
-        System.out.println("\nUppercase and lower case using collect");
+        System.out.println("\nUppercase and lowercase using collect");
         System.out.println(upLow.getUppercases());
         System.out.println(upLow.getLowercases());
 
         System.out.println("\nUppercase strings using joining into a single string");
         String uppercaseString = colors.stream().map(String::toUpperCase).collect(Collectors.joining(", "));
         System.out.println(uppercaseString);
+
+        upLow = colors.stream().collect(
+                UpperAndLowercase::new,
+                (acc, color) -> {
+                    if (List.of('a','e','i','o','u').contains(color.toLowerCase().charAt(0))) {
+                        acc.getUppercases().add(color.toUpperCase());
+                    } else {
+                        acc.getLowercases().add(color.toLowerCase());
+                    }
+                },
+                (a1, a2) -> {
+                    a1.getUppercases().addAll(a2.getUppercases());
+                    a1.getLowercases().addAll(a2.getLowercases());
+                }
+        );
+        System.out.println("\nConverting strings that start with a vowel to uppercase, otherwise to lowercase");
+        System.out.println("Uppercase: "+upLow.getUppercases());
+        System.out.println("Lowercase: "+upLow.getLowercases());
     }
 }
