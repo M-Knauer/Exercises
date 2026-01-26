@@ -10,5 +10,8 @@ public class Main {
         List<Integer> nonDuplicates =  new ArrayList<>(numbers.stream().distinct().toList());
         System.out.println("Non duplicate numbers list: "+nonDuplicates);
 
+        List<Integer> sorted = new ArrayList<>(numbers.stream().distinct().sorted().toList());
+        System.out.println("\nSorted by ascending order: "+sorted);
+
     }
 }
